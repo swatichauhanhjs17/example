@@ -4,11 +4,11 @@
    [test.db :as db]
    ))
 
-(re-frame/reg-event-db               
-  :identity          
-  (fn [db [_ value]]
-    (assoc db :val value)))
 
+ (re-frame/reg-event-db
+  :identity
+  (fn [db [_ value age address]]
+    (assoc db :final(str value age address))))
 
 
 (re-frame/reg-event-db

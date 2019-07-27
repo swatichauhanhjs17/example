@@ -8,9 +8,14 @@
    (:name db)))
 
 (re-frame/reg-sub
- ::add
+ ::address
  (fn [db]
-   (:add db)))
+   (:address db)))
+
+(re-frame/reg-sub
+ ::age
+ (fn [db]
+   (:age db)))
 
 (re-frame/reg-sub
  ::value

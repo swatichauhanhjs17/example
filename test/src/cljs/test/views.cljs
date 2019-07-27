@@ -19,17 +19,15 @@
                     :value @age
                     :on-change #(reset! age (-> % .-target .-value))}])
 
-(defn add-input [add]
+(defn add-input [address]
            [:input {:type "text"
-                    :value @add
-                    :on-change #(reset! add(-> % .-target .-value))}]         
+                    :value @address
+                    :on-change #(reset! address(-> % .-target .-value))}]         
 )
 
 
 (defn shared-state []
-  (let [value (r/atom "NAME")
-        age (r/atom " AGE")
-        add (r/atom "ADD")]
+  (let [final(r/atom {:value "NAME" :age "AGE" :address "ADDRESS)]
     (fn []
       [:div
        
@@ -37,18 +35,22 @@
        [:p "AGE: " [age-input age]]
        [:p "ADDRESS: " [add-input add]]
        [:input {:type "button" :value "SUBMIT"
-                  :on-click #(re-frame/dispatch [:identity]) }]])))
+                  :on-click #(re-frame/dispatch [:identity @final])}]])))
 
 
 
 (defn main-panel []
 
- (let [  name (re-frame/subscribe [::subs/name])
-         val(re-frame/subscribe [::subs/value])]
+ (let [name (re-frame/subscribe [::subs/name])
+       final (re-frame/subscribe[::subs/final])]
  [:div
 [shared-state]
-    [:h4 "Hello from " @name]
+    
+[:h4 "Hello from " @name]
 
-[:h4 "Hello" @val]
+[:h4 "NAME:-" @final]
+
+
+
 
    ]))
