@@ -23,12 +23,12 @@
 (defn add-input [final]
            [:input {:type "text"
                     :value @address
-                    :on-change #(reset! address(-> % .-target .-value))}]         
+                    :on-change #(reset! address (-> % .-target .-value))}]         
 )
 
 
 (defn shared-state []
-  (let [final(r/atom {:value "NAME" :age "AGE" :address "ADDRESS)]
+  (let [final (r/atom {:value "NAME" :age "AGE" :address "ADDRESS"})]
     (fn []
       [:div
        

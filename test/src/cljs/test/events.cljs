@@ -1,3 +1,4 @@
+
 (ns test.events
   (:require
    [re-frame.core :as re-frame]
@@ -7,8 +8,8 @@
 
  (re-frame/reg-event-db
   :identity
-  (fn [db [_ value age address]]
-    (assoc db :final(str value age address))))
+  (fn [db [_ final]]
+    (assoc db :final(str (get final :address))))
 
 
 (re-frame/reg-event-db
