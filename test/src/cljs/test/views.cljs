@@ -1,3 +1,4 @@
+
 (ns test.views
   (:require
    [re-frame.core :as re-frame]
@@ -7,19 +8,19 @@
 
 
 
-(defn atom-input [value]
+(defn atom-input [final]
         
          [:input {:type "text"
                     :value @value
                     :on-change #(reset! value (-> % .-target .-value))
 }])
 
-(defn age-input [age]
+(defn age-input [final]
            [:input {:type "text"
                     :value @age
                     :on-change #(reset! age (-> % .-target .-value))}])
 
-(defn add-input [address]
+(defn add-input [final]
            [:input {:type "text"
                     :value @address
                     :on-change #(reset! address(-> % .-target .-value))}]         
@@ -31,9 +32,9 @@
     (fn []
       [:div
        
-       [:p "NAME: " [atom-input value]]
-       [:p "AGE: " [age-input age]]
-       [:p "ADDRESS: " [add-input add]]
+       [:p "NAME: " [atom-input final]]
+       [:p "AGE: " [age-input final]]
+       [:p "ADDRESS: " [add-input final]]
        [:input {:type "button" :value "SUBMIT"
                   :on-click #(re-frame/dispatch [:identity @final])}]])))
 

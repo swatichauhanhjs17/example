@@ -1,0 +1,97 @@
+(def my-atom (atom 0))
+@my-atom
+(swap! my-atom inc)
+@my-atom
+(def my (atom 0))
+(swap! my inc)
+(swap my inc)
+(swap! my inc)
+(reset! my-atom 4)
+@my-atom
+(reset! my-atom 8)
+@my-atom
+(swap! my-atom (fn [n] (* (+ n n) 2)))
+(def a (atom #{}))
+(def my-atom (atom 0 :validator even?))
+(swap my-atom inc)
+(swap my-atom +2)
+(swap! my-atom inc)
+(swap! my-atom +2)
+(swap! my-atom (partial +2))
+(def my-atom (atom 0 :validator even?))
+ (swap! my-atom inc)
+ (swap! my-atom (partial +2))
+ (swap! my-atom (partial + 2))
+ (swap! my-atom (partial + 3))
+ (swap! my-atom (partial + 4))
+(def my-atom (atom 0 :validator odd?))
+(def my-atom (atom 1 :validator odd?))
+ (swap! my-atom (partial + 4))
+ (swap! my-atom (partial + 3))
+(def my-atom )
+ (swap! my-atom inc)
+@my-atom
+(def my-atm )
+@my-atm
+(def car
+  (atom {:make "Audi"
+         :model "Q3"}))
+@car
+(swap!
+ car
+ assoc :model "Q5")
+;;{:make "Audi", :model "Q5"}
+(swap!
+ car
+ assoc :model "98")
+(swap!
+ car
+ assoc :make "honda")
+(swap!
+ car
+ assoc :make "honda" model "96")
+(swap!
+ car
+ assoc :make "honda"; model "96")
+(swap!
+ car
+ assoc :make "honda": model "96")
+@car
+(reset! car {:make " " : model " " })
+;;
+(def car
+  (atom {:make "Audi"
+         :model "Q3"}))
+(swap!
+ car
+ assoc :model "Q5")
+;;{:make "Audi", :model "Q5"}
+(reset! car {:make "" :model ""})
+(swap!
+ car
+ assoc :model "Q5")
+(swap!
+ car
+ assoc :model "Q5": make "aduio")
+(defn memoize [f]
+  (let [mem (atom {})]
+    (fn [& args]
+      (if-let [e (find @mem args)]
+        (val e)
+        (let [ret (apply f args)]
+          (swap! mem assoc args ret)
+          ret)))))
+(defn fib [n]
+  (if (<= n 1)
+    n
+    (+ (fib (dec n)) (fib (- n 2)))))
+(time (fib 35))
+(if true
+  (do (println "Success!")
+      "By Zeus's hammer!")
+  (do (println "Failure!")
+      "By Aquaman's trident!"))
+user=> (def a (atom #{}))
+ (def a (atom #{}))
+(swap! a conj :tag "hello")
+(swap! a conj :tag "hello" "hjkl")
