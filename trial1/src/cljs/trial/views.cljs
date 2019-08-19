@@ -8,26 +8,14 @@
 (defn my-country
      [final] [:input
                { :type "text"
-                 :value @final
-                 :on-change #(re-frame/dispatch [:event1])}])
+                 :value (get @final :country)
+                 :on-change #(reset! final(-> % .-target .-value))}])
 
 (defn my-identity
-    [final][:input
-              { :type "text"
-                 :value @final
-                 :on-change #(reset! identity(-> %2 .-target .-value))}])
-
-
-
-
-
-
-
-
-
-
-
-
+    [final] [:input
+             {:type      "text"
+              :value     (get @final :identity)
+              :on-change #(reset! final(-> % .-target .-value))}])
 
 (defn my-form
   []
