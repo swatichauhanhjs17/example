@@ -9,13 +9,13 @@
      [final] [:input
                { :type "text"
                  :value (get @final :country)
-                 :on-change #(reset! final(-> % .-target .-value))}])
+                 :on-change #(swap! final assoc :country(-> % .-target .-value))}])
 
 (defn my-identity
     [final] [:input
              {:type      "text"
               :value     (get @final :identity)
-              :on-change #(reset! final(-> % .-target .-value))}])
+              :on-change #(swap! final assoc :identity(-> % .-target .-value))}])
 
 (defn my-form
   []
@@ -23,8 +23,8 @@
                         :country " country"})]
       (fn []
           [:div
-            [:h3 [:span {:style {:color "red"}} "Enter you name :- " [my-identity final]]]
-            [:h2 [:span {:style {:color "blue"}} "Enter you country :- " [my-country final]]]
+            [:h3 [:span {:style {:color "red"}} "Enter your name :- " [my-identity final]]]
+            [:h2 [:span {:style {:color "blue"}} "Enter your country :- " [my-country final]]]
             [:input {:type "button"
                      :value "submit"
                      :on-click #(re-frame/dispatch [:submit])}]])))
