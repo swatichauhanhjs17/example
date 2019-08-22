@@ -1,7 +1,8 @@
 (ns trial.events
   (:require
    [re-frame.core :as re-frame]
-   [trial.db :as db]))
+   [trial.db :as db]
+   [reagent.core :as r]))
 
 
 (re-frame/reg-event-db
@@ -12,18 +13,8 @@
 
 
 (re-frame/reg-event-db
-       :event1
-       (fn [db [_ final]]
-        (assoc db :final(str (get final :identity)))))
-
-
-(re-frame/reg-event-db
-  :event1
-  (fn [db [_ final]]
-    (assoc db :final(str (get final :identity)))))
-
-
-(re-frame/reg-event-db
-    :submit
-    (fn [db _]
-      ( assoc db :result "Form submitted")))
+  :submit
+  (fn [db[_ final]]
+    (def my-var final )
+      ( assoc db :result  my-var ))
+  )

@@ -11,3 +11,8 @@
     ::result
     (fn [db]
       (:result db)))
+
+(re-frame/reg-sub
+  ::data
+  (fn [db]
+    (:data db)))

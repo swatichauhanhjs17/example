@@ -5,6 +5,7 @@
    [reagent.core :as r]))
 
 
+
 (defn my-country
      [final] [:input
                { :type "text"
@@ -27,15 +28,7 @@
             [:h2 [:span {:style {:color "blue"}} "Enter your country :- " [my-country final]]]
             [:input {:type "button"
                      :value "submit"
-                     :on-click #(re-frame/dispatch [:submit])}]])))
-
-
-
-
-
-
-
-
+                     :on-click #(re-frame/dispatch [:submit @final])}]])))
 
 
 
@@ -44,11 +37,21 @@
 
 (defn main-panel []
   (let [name (re-frame/subscribe [::subs/name])
-        con (re-frame/subscribe [::subs/result])]
+        con (re-frame/subscribe [::subs/result])
+          ]
 
     [:div
      [:h1 "Hello from " @name]
 
      [:p "THIS IS A FORM"]
      [ my-form]
-     [:p "" @con]]))
+     
+
+     [:p "Name" (get @con :identity)
+      ]
+     [:p "COUNTRY" (get @con :country)
+      ]
+
+
+       ]
+    ))

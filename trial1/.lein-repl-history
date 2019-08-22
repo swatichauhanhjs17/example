@@ -1,0 +1,52 @@
+(def a(atom nil))
+(reset!  a { })
+ (swap! a assoc :key1 "value1")
+ (swap! a assoc :key2 12)
+ (swap! a assoc :mainkey {:subkey 1 :subkey2 2})
+ (swap! a assoc-in [:mainkey :subkey3 ]3)
+(swap! a assoc-in [:mainkey :subkey3 ] 30) 
+(swap! a update dissoc[:mainkey :subkey3])
+(swap! a update dissoc[:mainkey :subkey3] 30)
+(swap! a update dissoc[:mainkey :subkey3] )
+(swap!  update-in a [:mainkey] dissoc :subkey3
+))
+(swap!  update-in a [:mainkey] dissoc :subkey3)
+(swap! a  update-in  [:mainkey] dissoc :subkey3)
+(defn lister [items]
+  [:ul
+   (for [item items]
+     ^{:key item} [:li "Item " item])])
+(defn lister-user []
+  [:div
+   "Here is a list:"
+   [lister (range 3)]])
+@lister-user
+lister-user
+(lister 3)
+(get @list-user)
+(get @lister-user)
+(get @list-user 0)
+(nth '@lister-user 0)
+(nth '(lister user) 0)
+(nth '(lister- user) 0)
+ (def save (r/atom {}))
+ (def save (r/atom nil))
+      (reset! save {}) (def save (r/atom nil))
+      (reset! save {}) (def save (atom nil))
+(def save (r/atom nil))
+(def save (atom nil))
+      (reset! save {})
+(def sae (atom {}))
+sae
+@sae
+(defn newm{:ku "lo" :lop "jk"})
+(def newm{:ku "lo" :lop "jk"})
+newm
+(def fio(atom newm))
+fio
+@fio
+(def 'card)
+(def a(atom nil))
+a
+@a
+(def a)
