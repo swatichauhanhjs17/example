@@ -6,6 +6,10 @@
 
 
 
+
+
+
+
 (defn my-country
      [final] [:input
                { :type "text"
@@ -37,21 +41,21 @@
 
 (defn main-panel []
   (let [name (re-frame/subscribe [::subs/name])
-        con (re-frame/subscribe [::subs/result])
-          ]
+        all-values(re-frame/subscribe [::subs/all-values])
+        last-submitted(re-frame/subscribe [::subs/last-submitted])
+        ]
 
-    [:div
-     [:h1 "Hello from " @name]
-
-     [:p "THIS IS A FORM"]
-     [ my-form]
-     
-
-     [:p "Name" (get @con :identity)
-      ]
-     [:p "COUNTRY" (get @con :country)
-      ]
+    [:div  [:h1 "Hello from " @name]
 
 
-       ]
+     [my-form]
+     [:p "THIS IS THE RECENT DATA \n  :-" @all-values]
+
+     ;;
+     (for [item @all-values]
+       ^{:key item} [:li "Item " item])
+     ]
+
+
+
     ))

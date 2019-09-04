@@ -7,10 +7,28 @@
  (fn [db]
    (:name db)))
 
+
+
+
 (re-frame/reg-sub
-    ::result
-    (fn [db]
-      (:result db)))
+  ::last-submitted
+  (fn [db]
+    (:last-submitted db)))
+
+
+(re-frame/reg-sub
+  ::all-values
+  (fn [db]
+    (:all-values
+
+
+      db)))
+
+(re-frame/reg-sub
+  ::items
+
+  (fn [db]
+    (:items db)))
 
 (re-frame/reg-sub
   ::data

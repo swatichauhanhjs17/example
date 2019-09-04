@@ -14,7 +14,13 @@
 
 (re-frame/reg-event-db
   :submit
-  (fn [db[_ final]]
-    (def my-var final )
-      ( assoc db :result  my-var ))
-  )
+  (fn [db [_ final]]
+    (let  [ items( or (get db :all-values)[])
+           step(conj items final)]
+
+
+      ( assoc db :all-values step ))
+)
+
+    )
+
