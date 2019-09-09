@@ -16,10 +16,12 @@
   :submit
   (fn [db [_ final]]
     (let  [ items( or (get db :all-values)[])
-           step(conj items final)]
+           form-value(conj items final)]
 
-
-      ( assoc db :all-values step ))
+      (-> db
+          (assoc :all-values form-value)
+          (assoc :last-submitted final)
+     ))
 )
 
     )
