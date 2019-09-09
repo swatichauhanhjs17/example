@@ -51,7 +51,7 @@
 
      [my-form]
 
-     [:p "Recent Data :- " (last @all-values)]
+     [:p "Recent info :- " (last @all-values)]
      
      [:ol (for [item @all-values]
             ^{:key (str item)} [:li "DATA OF THE FORM :- " (str item)])
