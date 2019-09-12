@@ -29,6 +29,17 @@
                 :on-click #(re-frame/dispatch [:submit @final])}]])))
 
 
+(defn show-result
+[last-submitted]
+ [:p "Recent information" last-submitted])
+
+(defn show-all-values
+[ all-values]
+ [:ol (for [item all-values]
+            ^{:key (str item)}[:li "DATA OF THE FORM :- " (str item)]  )
+      ]
+)
+
 
 
 
@@ -50,10 +61,9 @@
 
 
      [my-form]
-      [:p "Recent Info" (last @last-submitted)]
-     [:ol (for [item @all-values]
-            ^{:key (str item)} [:li "DATA OF THE FORM :- " (str item)])
-      ]
+      [show-result @last-submitted]
+      [show-all-values @all-values]
+    
 
      ]
 

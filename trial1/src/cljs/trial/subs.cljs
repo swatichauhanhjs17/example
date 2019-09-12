@@ -13,7 +13,8 @@
 (re-frame/reg-sub
   ::last-submitted
   (fn [db]
-    (:all-values db)))
+   (last (:all-values db)
+)))
 
 
 (re-frame/reg-sub
