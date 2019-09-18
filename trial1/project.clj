@@ -2,7 +2,14 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.520"]
                  [reagent "0.8.1"]
-                 [re-frame "0.10.6"]]
+                 [re-frame "0.10.6"]
+                 [reagent "0.8.1"]
+                 [soda-ash "0.83.0"]
+                                     ]
+
+
+
+
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 

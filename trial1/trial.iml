@@ -22,6 +22,7 @@
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom-server:16.3.2-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom:16.3.2-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react:16.3.2-0" level="project" />
+    <orderEntry type="library" name="Leiningen: cljsjs/semantic-ui-react:0.83.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.5" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-clj:0.8.309" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-java:0.8.332" level="project" />
@@ -55,5 +56,6 @@
     <orderEntry type="library" name="Leiningen: org.msgpack/msgpack:0.6.12" level="project" />
     <orderEntry type="library" name="Leiningen: re-frame:0.10.6" level="project" />
     <orderEntry type="library" name="Leiningen: reagent:0.8.1" level="project" />
+    <orderEntry type="library" name="Leiningen: soda-ash:0.83.0" level="project" />
   </component>
 </module>

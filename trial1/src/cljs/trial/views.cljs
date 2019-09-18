@@ -2,7 +2,8 @@
   (:require
     [re-frame.core :as re-frame]
     [trial.subs :as subs]
-    [reagent.core :as r]))
+    [reagent.core :as r]
+    [soda-ash.core :as sa]))
 
 (defn my-country
   [final] [:input
@@ -19,35 +20,30 @@
 (defn my-form
   []
   (let [final (r/atom {:identity "  NAME"
-                       :country  " country"})]
+                       :country  " Country"})]
     (fn []
       [:div
-       [:h3 [:span {:style {:color "red"}} "Enter your name :- " [my-identity final]]]
-       [:h2 [:span {:style {:color "blue"}} "Enter your country :- " [my-country final]]]
+       [:h3 "Enter your name :- " [my-identity final]]
+       [:h3  "Enter your country :- " [my-country final]]
        [:input {:type     "button"
                 :value    "submit"
-                :on-click #(re-frame/dispatch [:submit @final])}]])))
+              [sa/Button { :basic    true
+                          :on-click #(re-frame/dispatch [:submit @final])}] }]])))
 
 
 (defn show-result
-[last-submitted]
- [:p "Recent information" last-submitted])
+[last-submitted country]
+
+ [:div [:h3 "YOUR NAME :- " last-submitted  ]
+  [:h3  "YOUR COUNTRY:- " country]] )
 
 (defn show-all-values
 [ all-values]
  [:ol (for [item all-values]
-            ^{:key (str item)}[:li "DATA OF THE FORM :- " (str item)]  )
+            ^{:key (str item)}
+            [:li "YOUR NAME :- " (str item) ]  )
       ]
 )
-
-
-
-
-
-
-
-
-
 
 
 (defn main-panel []
@@ -57,13 +53,13 @@
         ]
 
 
-    [:div [:h1 "Hello from " @name]
-
+    [:div
 
      [my-form]
-      [show-result @last-submitted]
-      [show-all-values @all-values]
-    
+      [show-result (get @last-submitted :identity) (get @last-submitted :country)   ]
+
+      [show-all-values @all-values  ]
+
 
      ]
 
