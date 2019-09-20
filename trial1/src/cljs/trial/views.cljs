@@ -25,10 +25,11 @@
       [:div
        [:h3 "Enter your name :- " [my-identity final]]
        [:h3  "Enter your country :- " [my-country final]]
-       [:input {:type     "button"
-                :value    "submit"
+
               [sa/Button { :basic    true
-                          :on-click #(re-frame/dispatch [:submit @final])}] }]])))
+                          :value    "submit"
+                          :on-click #(re-frame/dispatch [:submit @final])}] ]
+)))
 
 
 (defn show-result
@@ -41,7 +42,7 @@
 [ all-values]
  [:ol (for [item all-values]
             ^{:key (str item)}
-            [:li "YOUR NAME :- " (str item) ]  )
+            [:li "YOUR NAME :- " [show-result (get @item :identity) (get @item :country)   ]]  )
       ]
 )
 
@@ -56,7 +57,7 @@
     [:div
 
      [my-form]
-      [show-result (get @last-submitted :identity) (get @last-submitted :country)   ]
+
 
       [show-all-values @all-values  ]
 
