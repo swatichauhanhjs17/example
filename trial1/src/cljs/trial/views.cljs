@@ -6,16 +6,21 @@
     [soda-ash.core :as sa]))
 
 (defn my-country
-  [final] [:input
-           {:type      "text"
-            :value     (get @final :country)
-            :on-change #(swap! final assoc :country (-> % .-target .-value))}])
+  [final] [sa/FormInput{ :label "COUNTRY  "
+                        :width "5"
+                        :input  "text"
+                        :value (get @final :country)
+                        :on-change #(swap! final assoc :country (-> % .-target .-value))} ] )
 
 (defn my-identity
-  [final] [:input
-           {:type      "text"
+  [final] [sa/FormInput
+           { :label "NAME  "
+            :input-Placeholder "NAME"
+            :width "5"
+            :input "text"
+
             :value     (get @final :identity)
-            :on-change #(swap! final assoc :identity (-> % .-target .-value))}])
+            :on-change #(swap! final assoc :identity (-> % .-target .-value))} ])
 
 (defn my-form
   []
@@ -23,12 +28,13 @@
                        :country  " Country"})]
     (fn []
       [:div
-       [:h3 "Enter your name :- " [my-identity final]]
-       [:h3  "Enter your country :- " [my-country final]]
+             [sa/Form {}
+              [:h3  [my-identity final]]
+              [:h3  [my-country final]]
 
-              [sa/Button { :basic    true
-                          :value    "submit"
-                          :on-click #(re-frame/dispatch [:submit @final])}] ]
+              [sa/Button {
+                          :circular true
+                          :on-click #(re-frame/dispatch [:submit @final])} " SUBMIT"] ]]
 )))
 
 
@@ -40,10 +46,12 @@
 
 (defn show-all-values
 [ all-values]
- [:ol (for [item all-values]
-            ^{:key (str item)}
-            [:li "YOUR NAME :- " [show-result (get @item :identity) (get @item :country)   ]]  )
-      ]
+
+  (for [item all-values]
+    ^{:key (str item)}
+    [:li [show-result (get item :identity) (get item :country)]]
+    ) ]
+
 )
 
 
@@ -57,8 +65,7 @@
     [:div
 
      [my-form]
-
-
+      [:h3 "RECENT DATA"  [show-result (get @last-submitted :identity) (get @last-submitted :country)   ]]
       [show-all-values @all-values  ]
 
 
