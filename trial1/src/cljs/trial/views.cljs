@@ -46,7 +46,7 @@
 
 (defn show-all-values
 [ all-values]
-
+ [:ul
   (for [item all-values]
     ^{:key (str item)}
     [:li [show-result (get item :identity) (get item :country)]]
